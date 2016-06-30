@@ -2,8 +2,9 @@
 
 ## git clone the project then
 
-> npm install
-> bower update
+npm install
+
+bower update
 
 ## Build & development
 
