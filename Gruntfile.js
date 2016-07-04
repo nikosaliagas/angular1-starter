@@ -311,6 +311,12 @@ module.exports = function(grunt) {
             }
         },
 
+        ts: {
+            default: {
+                src: ["**/*.ts", "!node_modules/**"]
+            }
+        },
+
         // The following *-min tasks will produce minified files in the dist folder
         // By default, your `index.html`'s <!-- Usemin block --> will take care of
         // minification. These next options are pre-configured if you do not wish
@@ -490,6 +496,7 @@ module.exports = function(grunt) {
         // },
     });
 
+    grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks('grunt-protractor-runner');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.registerTask('serve', 'Compile then start a connect web server', function(target) {
@@ -500,6 +507,7 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:server',
             'wiredep',
+            'ts',
             'concurrent:server',
             'postcss:server',
             'connect:livereload',
@@ -542,6 +550,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'newer:jshint',
         'newer:jscs',
+        'ts',
         'test',
         'build'
     ]);
